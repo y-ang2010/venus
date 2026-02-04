@@ -51,7 +51,7 @@ func (s *ActorStorage) StorePut(obj cbor.Marshaler) cid.Cid {
 	if err != nil {
 		msg := fmt.Sprintf("failed To put object %s in store: %s", reflect.TypeOf(obj), err)
 		if xerrors.As(err, new(cbornode.SerializationError)) {
-			runtime.Abortf(serializationErr, msg)
+			runtime.Abortf(serializationErr, "%s", msg)
 		} else {
 			panic(msg)
 		}
@@ -70,7 +70,7 @@ func (s *ActorStorage) StoreGet(cid cid.Cid, obj cbor.Unmarshaler) bool {
 		var nfe notFoundErr
 		if xerrors.As(err, &nfe) && nfe.IsNotFound() {
 			if xerrors.As(err, new(cbornode.SerializationError)) {
-				runtime.Abortf(serializationErr, msg)
+				runtime.Abortf(serializationErr, "%s", msg)
 			}
 			return false
 		}
