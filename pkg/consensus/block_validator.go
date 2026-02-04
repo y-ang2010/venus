@@ -906,7 +906,7 @@ func (bv *BlockValidator) checkBlockMessages(ctx context.Context,
 		}
 
 		if m.Signature.Type == crypto.SigTypeDelegated && !IsValidEthTxForSending(nv, m) {
-			return fmt.Errorf("network version should be atleast NV23 for sending legacy ETH transactions; but current network version is %d", nv)
+			return fmt.Errorf("network version should be at least NV23 for sending legacy ETH transactions; but current network version is %d", nv)
 		}
 
 		secpMsgs[i] = m

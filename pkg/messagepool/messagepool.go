@@ -960,7 +960,7 @@ func (mp *MessagePool) addTS(ctx context.Context, m *types.SignedMessage, curTS 
 	// TODO: I'm not thrilled about depending on filcns here, but I prefer this to duplicating logic
 
 	if m.Signature.Type == crypto.SigTypeDelegated && !consensus.IsValidEthTxForSending(nv, m) {
-		return false, fmt.Errorf("network version should be atleast NV23 for sending legacy ETH transactions; but current network version is %d", nv)
+		return false, fmt.Errorf("network version should be at least NV23 for sending legacy ETH transactions; but current network version is %d", nv)
 	}
 
 	if !consensus.IsValidForSending(nv, senderAct) {

@@ -27,7 +27,7 @@ func WithSliceLen(size int) OptionFunc {
 func Provide(t *testing.T, dst interface{}, options ...interface{}) {
 	rval := reflect.ValueOf(dst)
 	if kind := rval.Kind(); kind != reflect.Ptr {
-		t.Fatalf("value provider can only be applied on to poniters, got %T", dst)
+		t.Fatalf("value provider can only be applied on to pointers, got %T", dst)
 	}
 
 	reg := defaultValueProviderRegistry
