@@ -51,7 +51,7 @@ func encryptKey(key *Key, password []byte, scryptN, scryptP int) ([]byte, error)
 func encryptData(data, password []byte, scryptN, scryptP int) (CryptoJSON, error) {
 	salt := make([]byte, 32)
 	if _, err := io.ReadFull(rand.Reader, salt); err != nil {
-		return CryptoJSON{}, fmt.Errorf("reading from crypto/rand failed: " + err.Error())
+		return CryptoJSON{}, fmt.Errorf("reading from crypto/rand failed: %s", err.Error())
 	}
 	derivedKey, err := scrypt.Key(password, salt, scryptN, scryptR, scryptP, scryptDKLen)
 	if err != nil {
@@ -61,7 +61,7 @@ func encryptData(data, password []byte, scryptN, scryptP int) (CryptoJSON, error
 
 	iv := make([]byte, aes.BlockSize) // 16
 	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
-		return CryptoJSON{}, fmt.Errorf("reading from crypto/rand failed: " + err.Error())
+		return CryptoJSON{}, fmt.Errorf("reading from crypto/rand failed: %s", err.Error())
 	}
 	cipherText, err := aesCTRXOR(encryptKey, data, iv)
 	if err != nil {

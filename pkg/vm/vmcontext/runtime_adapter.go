@@ -336,7 +336,7 @@ func (a *runtimeAdapter) StartSpan(name string) func() {
 }
 
 func (a *runtimeAdapter) AbortStateMsg(msg string) {
-	runtime.Abortf(101, msg)
+	runtime.Abortf(101, "%s", msg)
 }
 
 func (a *runtimeAdapter) BaseFee() abi.TokenAmount {

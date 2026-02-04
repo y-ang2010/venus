@@ -72,7 +72,7 @@ commands:
 executors:
   golang:
     docker:
-      - image: cimg/go:1.23.6
+      - image: cimg/go:1.24.8
 
 jobs:
   test_all:

@@ -256,7 +256,7 @@ func (ctx *invocationContext) invoke() (ret []byte, errcode exitcode.ExitCode) {
 	var extErr *dispatch.ExcuteError
 	ret, extErr = actorImpl.Dispatch(ctx.originMsg.Method, ctx.vm.NetworkVersion(), adapter, ctx.originMsg.Params)
 	if extErr != nil {
-		runtime.Abortf(extErr.ExitCode(), extErr.Error())
+		runtime.Abortf(extErr.ExitCode(), "%s", extErr.Error())
 	}
 
 	// post-dispatch

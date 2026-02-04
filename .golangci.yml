@@ -45,6 +45,7 @@ linters-settings:
       - printf
 
 run:
+  concurrency: 2
   skip-dirs:
     - pkg/constants$
     - pkg/util/test$
